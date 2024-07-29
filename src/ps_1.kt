@@ -8,8 +8,8 @@
 //    val name = readlnOrNull()
 //    print("$name??!")
 //}
-
-fun main() {
-    val (a, b, c) = readln().split(" ").map { it.toLong() }
-    print(a + b + c)
-}
+//
+//fun main() {
+//    val (a, b, c) = readln().split(" ").map { it.toLong() }
+//    print(a + b + c)
+//}
