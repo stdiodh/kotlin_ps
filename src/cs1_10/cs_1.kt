@@ -1,3 +1,5 @@
+package cs1_10
+
 //fun main(){
 //    var year = readlnOrNull()!!.toInt()
 //    year -= 543
