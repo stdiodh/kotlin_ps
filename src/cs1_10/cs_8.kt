@@ -1,3 +1,4 @@
+package cs1_10
 //import java.util.Scanner
 //
 //fun main() {

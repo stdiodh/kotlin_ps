@@ -1,3 +1,5 @@
+package cs1_10
+
 //fun main() {
 //    val str = readln()
 //    if(str == str.reversed()){
