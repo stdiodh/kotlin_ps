@@ -1,4 +1,4 @@
-package cs11_20
+package ps11_20
 
 //import java.util.Scanner
 //

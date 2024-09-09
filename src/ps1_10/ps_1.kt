@@ -1,4 +1,4 @@
-package cs1_10
+package ps1_10
 
 //fun main(){
 //    var year = readlnOrNull()!!.toInt()
