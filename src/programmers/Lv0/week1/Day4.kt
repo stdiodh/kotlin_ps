@@ -1,4 +1,4 @@
-package programmers.Lv0
+package programmers.Lv0.week1
 
 /* 점 위치 구하기
 class Solution {

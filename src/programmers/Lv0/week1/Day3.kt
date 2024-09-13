@@ -1,6 +1,4 @@
-package programmers.Lv0
-
-import kotlin.math.sqrt
+package programmers.Lv0.week1
 
 /*
 //제곱수 판별하기

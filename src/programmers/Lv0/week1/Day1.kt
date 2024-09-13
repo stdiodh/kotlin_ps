@@ -1,4 +1,4 @@
-package programmers.Lv0
+package programmers.Lv0.week1
 
 //class Solution {
 //    fun solution(num1: Int, num2: Int) = num1 % num2

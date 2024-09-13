@@ -1,4 +1,4 @@
-package programmers.Lv0
+package programmers.Lv0.week1
 
 /* 두 수의 나눗셈
 class Solution {

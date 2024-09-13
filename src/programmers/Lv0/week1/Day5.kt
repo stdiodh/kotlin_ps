@@ -1,6 +1,4 @@
-package programmers.Lv0
-
-import kotlin.math.ceil
+package programmers.Lv0.week1
 
 /* 피자 나눠 먹기 (1)
 class Solution {
