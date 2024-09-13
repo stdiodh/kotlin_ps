@@ -1,5 +1,7 @@
 package programmers.Lv0
 
+import kotlin.math.ceil
+
 /* 피자 나눠 먹기 (1)
 class Solution {
     fun solution(n: Int): Int = ceil(n.toDouble() / 7).toInt()
