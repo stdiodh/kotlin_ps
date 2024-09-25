@@ -54,7 +54,7 @@ class Solution {
 }
  */
 
-
-fun main() {
-    println(solution("123456789"))
-}
+//
+//fun main() {
+//    println(solution("123456789"))
+//}
