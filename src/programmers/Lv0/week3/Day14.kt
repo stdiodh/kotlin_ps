@@ -23,9 +23,9 @@ class Solution {
 
 /* 공백으로 구분하기 2
 class Solution {
-    fun solution(my_string: String): List<String> {
-        val answer = my_string.split(" ").filter { it.isNotEmpty() }
-        return answer
+    fun solution(my_string: String): Array<String> {
+        var answer = my_string.split(" ").filter { it.isNotEmpty() }
+        return answer.toTypedArray()
     }
 }
  */
