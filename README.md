@@ -1,8 +1,8 @@
 ## kotlin
-Spring boot 백 엔드 개발을 준비하기 위한 기본 문법 공부
+Spring boot 백 엔드 개발을 준비하기 위한 코딩 테스트
 
 ## 👨‍🏫 레포지토리 소개
-kotlin의 기본 문법과 함수에 대해 공부를 하며 사용되고 있는 repo입니다!
+Programmers와 Beakjoon PS 문제를 공부를 하며 사용되고 있는 repo입니다!
 
 ## ⏲️ 개발 기간
 + 24/07/28 ~ ing
