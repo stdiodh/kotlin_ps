@@ -7,7 +7,7 @@ Programmers와 Beakjoon PS 문제를 공부를 하며 사용되고 있는 repo�
 ## ⏲️ 개발 기간
 + 24/07/28 ~ ing
 
-## ⚙️ 기술 스택
+## ⚙️ 사용 언어
 <table>
   <tr>
     <th scope="col">Kotlin</th>
