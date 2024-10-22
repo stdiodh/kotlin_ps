@@ -1,13 +1,82 @@
 package programmers.Lv0.week6
 
-import java.io.StreamTokenizer
-
 // k*k의 체스판을 만드는 데 출력은 다시 칠해야 되는 칸의 갯수
-fun main() = with(StreamTokenizer(System.`in`.bufferedReader())){
+/**
+ *
+ * 해당 문제는 누적합을 이용하여 체스판을 다시 칠하는 최소값을 구하는 문제입니다. 누적합을 응용하여 해당 로직을 작성하는 능력을 요구합니다.
+ * 체스판은 두가지 경우가 존재합니다. 하나는 가장 왼쪽 상단이 하얀색으로 시작하여 체스판을 칠하는 경우, 나머지는 가장 왼쪽 상단이 검정색으로 시작하여 체스판을 칠하는 경우입니다. 두 경우에서 가장 작은 색칠수가 정답이 되겠죠. 그렇기에 두가지 경우에 해당하는 누적합 2차원 배열을 각각 생성하여, 두개의 값을 비교하는 방식으로 문제를 풀 수 있습니다.
+ * 체스판을 다시 칠해야하는 칸은 1개의 횟수가 카운팅됩니다. 즉, 색이 요구되는 상황가 다른 경우에는 1 더해져야하고, 요구되는 상황과 같은 경우에는 0을 더합니다. 이러한 방식으로 누적합 배열을 완성하면 체스판을 오렸을 때,  다시 칠해야하는 칸 수를 쉽게 구할 수 있습니다.
+ * 체스판을 좌표로 봤을 때, 왼쪽 상단부터 특정 색으로 동일해야 하는 경우 해당 좌표는 다음과 같습니다.
+ * (O는 흰색, X는 검정색)
+ * OXOXO
+ * XOXOX
+ * OXOXO
+ * XOXOX
+ * OXOXO
+ * 예를 들어, 5 X 5 체스판의 경우 흰색부터 칠해야 하는 경우라고 할 때,
+ * 흰색에 해당하는 좌표는 (0, 0), (0, 2), (0, 4), (1, 1), (1, 3), (2, 0), (2, 2), (2, 4), (3, 1), (3, 3), (4, 0), (4, 2), (4, 4)로 총 13칸입니다.
+ * 그리고 검은색에 해당하는 좌표는 (0, 1), (0, 3), (1, 0), (1, 2), (1, 4), (2, 1), (2, 3), (3, 0), (3, 2), (3, 4), (4, 1), (4, 3)입니다.
+ * 각 좌표의 특징은 왼쪽 상단에 들어가는 색상과 동일한 좌표는 X, Y 좌표의 합이 짝수입니다. 마찬가지로 왼쪽 상단에 들어가는 색상과 다른 좌표는 X, Y 좌표의 합이 홀수라는 것을 알 수 있습니다. 이를 통해서 각 칸에 해당하는 값을 찾아내어 요구사항과 같으면 카운팅하고 다르면 카운팅하지 않는 누적합 생성 로직을 작성할 수 있습니다.
+ * 누적합이 완성된다면, 체스판의 크기에 맞게끔 쿼리를 생성하여 탐색해야 합니다.
+ * 체스판으로 모든 칸을 사용해야 한다면, (0, 0)부터 (4, 4)까지의 누적합을 구해야겠죠. 하지만, 문제에서는 특정 칸 수는 언급되지 않았기에 주어진 체스판으로 만들 수 있는 모든 경우의 수를 전부 탐색해서 누적합을 비교해야 합니다. 누적합의 비교는 왼쪽이 검정색부터 시작인지 아니면 흰색부터 시작인지 두개의 경우 중 가장 작은 값을 찾아내는 것을 의미합니다.
+ */
+import java.io.StreamTokenizer
+import kotlin.math.min
+
+fun main() = with(StreamTokenizer(System.`in`.bufferedReader())) {
     fun nextInt() : Int {
         nextToken()
         return nval.toInt()
     }
 
+    fun nextString() : String {
+        nextToken()
+        return sval
+    }
 
+    val n = nextInt()
+    val m = nextInt()
+    val k = nextInt()
+
+    val board = Array(n) {
+        nextString()
+    }
+
+    val psum = Array(n+1) {Array(m+1) { IntArray(2) {0} } }
+    for (x in 1 .. n) {
+        for(y in 1 .. m) {
+            repeat(2) { z ->
+                psum[x][y][z] = psum[x][y-1][z] + psum[x-1][y][z] - psum[x-1][y-1][z]
+            }
+
+            if ((x+y) % 2 == 1) {
+                if (board[x - 1][y - 1] == 'B') {
+                    psum[x][y][0] += 1
+                } else {
+                    psum[x][y][1] += 1
+                }
+            } else {
+                if (board[x - 1][y - 1] == 'W') {
+                    psum[x][y][0] += 1
+                } else {
+                    psum[x][y][1] += 1
+                }
+            }
+        }
+    }
+
+    var ans = 2000000
+    for (x in 1 .. n - k + 1) {
+        for (y in 1 .. m - k + 1) {
+            repeat(2) {z ->
+                val x1 = x
+                val y1 = y
+                val x2 = x + k - 1
+                val y2 = y + k - 1
+                val result = psum[x2][y2][z] - psum[x2][y1 - 1][z] - psum[x1 - 1][y2][z] + psum[x1 - 1][y1 - 1][z]
+                ans = min(result, ans)
+            }
+        }
+    }
+    println(ans)
 }
