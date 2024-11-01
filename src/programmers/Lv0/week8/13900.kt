@@ -14,7 +14,7 @@ fun main() = with(StreamTokenizer(System.`in`.bufferedReader())){
         nextInt()
     }
 
-    val pSum = IntArray(n+1){
+    val pSum = LongArray(n+1){
         0
     }
 
@@ -22,7 +22,7 @@ fun main() = with(StreamTokenizer(System.`in`.bufferedReader())){
         pSum[it+1] = pSum[it] + arr[it]
     }
 
-    var result = 0
+    var result = 0L
     for(x in 0 until n){
         result += arr[x] * (pSum[n] - pSum[x+1]);
     }
