@@ -26,14 +26,10 @@ fun main() = with(StreamTokenizer(System.`in`.bufferedReader())){
         val c2 = nextInt()
 
         var count = 0
+        //직사각형 넓이 구하는 공식
+        val sq = (r2-r1+1) * (c2-c1+1)
 
-        for(idx in r1..r2){
-            for(jdx in c1 .. c2){
-                count+=1
-            }
-        }
-
-        sb.appendLine((pSum[r2][c2] - pSum[r2][c1-1] - pSum[r1-1][c2] + pSum[r1-1][c1-1]) / count)
+        sb.appendLine((pSum[r2][c2] - pSum[r2][c1-1] - pSum[r1-1][c2] + pSum[r1-1][c1-1]) / sq)
     }
     println(sb)
 }
