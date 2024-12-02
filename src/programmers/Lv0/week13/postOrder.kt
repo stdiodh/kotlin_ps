@@ -8,12 +8,12 @@ fun postOrderTraversal(node : Node?){
 }
 
 fun main() {
-    val a = Node('a')
-    val b = Node('b')
-    val c = Node('c')
-    val d = Node('d')
-    val e = Node('e')
-    val f = Node('f')
+    val a = Node('A')
+    val b = Node('B')
+    val c = Node('C')
+    val d = Node('D')
+    val e = Node('E')
+    val f = Node('F')
     a.left = b
     a.right = c
     b.left = d
