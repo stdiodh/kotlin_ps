@@ -39,9 +39,15 @@ class Heapq<T : Comparable<T>>{
 
     //dequeue() 메소드를 통해서 루트 노드를 추출한다.
     //siftDown()을 수행한다.
-    fun dequeue(element : T) : Unit{
-        data.remove(element)
-        siftDown()
+    fun dequeue(element : T) : T?{
+        if (data.isEmpty()) return null
+        val root = data.first()
+        val last = data.removeAt(data.size - 1)
+        if (data.isNotEmpty()) {
+            data[0] = last
+            siftDown()
+        }
+        return root
     }
 
     private fun siftDown() : Unit {
@@ -49,31 +55,47 @@ class Heapq<T : Comparable<T>>{
         //우선순위가 두번째 인 애랑 그 뒤 자식들이 올라와야 함
         //부모에는 왼쪽 인덱스가
         //오른쪽 인덱스는 왼쪽에 이동하는 것의 반복
-        var child : Int = data.size - 1
-        var parent : Int = (child - 1) / 2
+        var parent = 0
         while(true){
             val leftChild = parent * 2 + 1
             val rightChild = parent * 2 + 2
             var change = parent
 
+            if (leftChild < data.size && areSorted(data[leftChild], data[change])) {
+                change = leftChild
+            }
+            if (rightChild < data.size && areSorted(data[rightChild], data[change])) {
+                change = rightChild
+            }
             if(change == parent){
                 break
             }
+            data.swap(parent, change)
+            parent = change
         }
     }
 
     //siftDown() 메소드는 자료구조의 규칙에 맞게 다시 데이터를
     //재정렬한다.
 
+
+    override fun toString(): String {
+        return data.toString()
+    }
+
 }
 
 fun main() {
     val n = Heapq<Int>()
     n.enqueue(1)
+    n.enqueue(2)
+    n.enqueue(4)
+    n.enqueue(3)
+    n.enqueue(6)
     n.enqueue(5)
-    n.enqueue(7)
-    n.enqueue(10)
     println(n.peek())
     println(n.size)
+    println(n)
+    n.dequeue(3)
     println(n)
 }
