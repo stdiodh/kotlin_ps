@@ -1,10 +1,18 @@
 package programmers.Lv0.week19
 
-class Heapq<T : Comparable<T>>{
+class Heapq<T : Comparable<T>>(
+    private val desc: Boolean? = false
+){
     private val data = mutableListOf<T>()
     //최대 힙은 해당 부분의 정렬 기준을 부모 노드가 자식 노드보다 커야하기 때문에
     //조건을 a > b로 바꾸어 주면 됨.
-    private val areSorted : (T, T) -> Boolean = {a, b -> a < b}
+    private val areSorted : (T, T) -> Boolean = {a, b ->
+        if(this.desc!!) {
+            a < b
+        } else {
+            a > b
+        }
+    }
 
     //size 메소드로 데이터 크기를 반환해야 함.
     val size : Int
@@ -18,13 +26,13 @@ class Heapq<T : Comparable<T>>{
     //enqueue() 메소드로 원소를 입력받음
     fun enqueue(element : T) : Unit{
         data.add(element)
-        siftUp(data.size - 1)
+        siftUp()
     }
 
     //siftUp() 메소드로 원소 재정렬을 수행함
     //siftUp() 메소드는 내부 데이터를 힙 자료에 맞게 재정렬을 함
-    private fun siftUp(index : Int) : Unit{
-        var child : Int = index
+    private fun siftUp() : Unit{
+        var child : Int = data.size-1
         var parent : Int = (child - 1) / 2
         while(child > 0 && areSorted(data[child], data[parent])){
             data.swap(child, parent)
@@ -56,9 +64,9 @@ class Heapq<T : Comparable<T>>{
         //4. 삭제된 위치의 인덱스를 기준으로 힙을 재정렬한다.
         if(index < data.size){
             //자식 노드와 비교하여 정렬
-            siftDown(index)
+            siftDown()
             //부모 노드와 비교하여 정렬
-            siftUp(index)
+            siftUp()
         }
         return true
     }
@@ -66,9 +74,9 @@ class Heapq<T : Comparable<T>>{
 
     //siftDown() 메소드는 자료구조의 규칙에 맞게 다시 데이터를
     //재정렬한다.
-    private fun siftDown(index : Int) : Unit {
+    private fun siftDown() : Unit {
         //시작 노드는 부모 노드로
-        var parent = index
+        var parent = 0
         while(true){
             //왼쪽 자식 노드의 인덱스
             val leftChild = parent * 2 + 1
@@ -106,7 +114,7 @@ class Heapq<T : Comparable<T>>{
 }
 
 fun main() {
-    val n = Heapq<Int>()
+    val n = Heapq<Long>(desc = false)
     n.enqueue(1)
     n.enqueue(2)
     n.enqueue(4)
