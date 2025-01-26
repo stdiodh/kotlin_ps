@@ -114,8 +114,9 @@ class Heapq<T : Comparable<T>>(
 }
 
 fun main() {
-    val n = Heapq<Long>(desc = false)
+    val n = Heapq<Long>(desc = true)
     n.enqueue(1)
+    n.enqueue(7)
     n.enqueue(2)
     n.enqueue(4)
     n.enqueue(3)
