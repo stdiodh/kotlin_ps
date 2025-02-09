@@ -5,10 +5,10 @@ import kotlin.math.min
 fun main() {
     val graph = listOf(
         emptyList(),
-        listOf(Pair(2, 4), Pair(4, 6)),
-        listOf(Pair(1, 3), Pair(3, 7)),
-        listOf(Pair(1, 5) , Pair(4, 4)),
-        listOf(Pair(3, 2))
+        listOf(Pair(2, 3), Pair(4, 6)),
+        listOf(Pair(1, 4), Pair(3, 7)),
+        listOf(Pair(1, 5) , Pair(4, 2)),
+        listOf(Pair(3, 4))
     )
     val INF = 1_000_000_000L
     //최단 경로 기록 2차원 배열선언
